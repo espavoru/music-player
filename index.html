@@ -16,8 +16,23 @@
     <div class="img-container"><img src="img/bwtech-1.jpg" alt="Album Art"></div>
     <h2 id="title">Electric Chill</h2>
     <h3 id="artist">BWTech</h3>
-    <audio src="music/bwtech-1.mp3" controls></audio>
+    <audio src="music/bwtech-1.mp3"></audio>
+    <!-- Progress -->
+    <div id="progress-container" class="progress-container">
+      <div id="progress" class="progress"> </div>
+      <div class="duration-wrapper">
+        <span id="current-time">0:00</span>
+        <span id="duration">2:06</span>
+      </div>
+    </div>
+    <!-- Controls -->
+    <div class="player-controls">
+      <i id="prev" class="fas fa-backward" title="Previous"></i>
+      <i id="play" class="fas fa-play main-button" title="Play"></i>
+      <i id="next" class="fas fa-forward" title="Next"></i>
+    </div>
   </div>
+
   <!-- Script -->
   <script src="script.js"></script>
 </body>
