@@ -121,6 +121,15 @@ const updateProgressBar = (e) => {
   }
 };
 
+// Set Progress Bar
+const setProgressBar = (e) => {
+  const width = e.target.clientWidth;
+  const clickX = e.offsetX;
+  const { duration } = music;
+
+  music.currentTime = (clickX / width) * duration;
+};
+
 // Event Listeners
 document.addEventListener("click", (e) => {
   // Play or Pause
@@ -131,6 +140,10 @@ document.addEventListener("click", (e) => {
 
   // Play Next Song
   if (e.target.closest("#next")) nextSong();
+
+  // Set Progress Bar
+  if (e.target.closest("#progress-container")) setProgressBar(e);
 });
 
 music.addEventListener("timeupdate", updateProgressBar);
+music.addEventListener("ended", nextSong);
