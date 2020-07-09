@@ -6,6 +6,8 @@ const prevBtn = document.getElementById("prev");
 const playBtn = document.getElementById("play");
 const nextBtn = document.getElementById("next");
 
+let songIndex = 0;
+
 // Music
 const songs = [
   {
@@ -53,10 +55,7 @@ const pauseSong = () => {
   music.pause();
 };
 
-// Play or Pause Event Listener
-playBtn.addEventListener("click", () => (isPlaying ? pauseSong() : playSong()));
-
-// Update DOM
+// Update song info in DOM
 const loadSong = (song) => {
   title.textContent = song.displayName;
   artist.textContent = song.artist;
@@ -64,5 +63,37 @@ const loadSong = (song) => {
   image.src = `img/${song.name}.jpg`;
 };
 
+// Prev Song
+const prevSong = () => {
+  songIndex--;
+
+  if (songIndex < 0) songIndex = songs.length - 1;
+
+  loadSong(songs[songIndex]);
+  playSong();
+};
+
+// Next Song
+const nextSong = () => {
+  songIndex++;
+
+  if (songIndex > songs.length - 1) songIndex = 0;
+
+  loadSong(songs[songIndex]);
+  playSong();
+};
+
 // On Load - Select First Song
-loadSong(songs[0]);
+loadSong(songs[songIndex]);
+
+// Event Listeners
+document.addEventListener("click", (e) => {
+  // Play or Pause
+  if (e.target.closest("#play")) isPlaying ? pauseSong() : playSong();
+
+  // Play Prev Song
+  if (e.target.closest("#prev")) prevSong();
+
+  // Play Next Song
+  if (e.target.closest("#next")) nextSong();
+});
